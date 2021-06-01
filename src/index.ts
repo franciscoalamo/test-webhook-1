@@ -2,11 +2,7 @@ import { loadEnvironmentVariables } from './util/env'
 import { SlackBotRequest } from './interfaces'
 import { post } from './util/http'
 import { log } from './util/logger'
-import { seconds } from './util/timer'
-
-const STANDUP_TIME = '12:29'
-const MORGAN_GIF = 'https://gph.is/g/4gA20OJ'
-const MAZZARRI_GIF = 'https://gph.is/g/4oLzgVP'
+import { initListener } from './webhooklistener';
 
 async function init(): Promise<void> {
   const { HOOK, TOKEN } = await loadEnvironmentVariables<SlackBotRequest>()
@@ -14,6 +10,8 @@ async function init(): Promise<void> {
 
   log('Starting...')
 
+  initListener();
+/*
   const interval = setInterval(async () => {
     const time = new Date().toLocaleTimeString().split(' ')[0]
     const hours = time.split(':')[0]
@@ -37,7 +35,7 @@ async function init(): Promise<void> {
     } else {
       log('Waiting...')
     }
-  }, 5000)
+  }, 5000)*/
 }
 
 init()
