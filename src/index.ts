@@ -1,12 +1,27 @@
 import { loadEnvironmentVariables } from './util/env'
 import { SlackBotRequest } from './interfaces'
-import { post } from './util/http'
+import { post, postJira } from './util/http'
 import { log } from './util/logger'
 import { initListener } from './webhooklistener';
+import { Jira } from './interfaces/index';
 
-async function init(): Promise<void> {
+export async function sendMessageToSlack(msg: string): Promise<void> {
   const { HOOK, TOKEN } = await loadEnvironmentVariables<SlackBotRequest>()
   const postMessage = post(HOOK)({ Authorization: `Bearer ${TOKEN}` })
+  await postMessage({ blocks: [{"type": "section", "text": {"type": "mrkdwn", "text": msg}}], as_user: true })
+}
+
+export async function sendCommentToJira(ticket: string, msg: string): Promise<void> {
+  postJira(ticket,msg)
+}
+
+export async function setVersion(ticket: string, version: string): Promise<void> {
+  setVersionJira(ticket,version)
+}
+
+
+async function init(): Promise<void> {
+  
 
   log('Starting...')
 
@@ -39,3 +54,7 @@ async function init(): Promise<void> {
 }
 
 init()
+function setVersionJira(ticket: string, version: string) {
+  throw new Error('Function not implemented.');
+}
+
