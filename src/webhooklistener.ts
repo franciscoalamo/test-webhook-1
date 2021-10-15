@@ -26,7 +26,7 @@ export function initListener(): void {
                     ["emilio.estebanez@grandvision.com","UUUJ0K9EE"],
                     ["enrique.delascuevas@grandvision.com","UV7EUD932"],
                     ["jorge.delgado@grandvision.com","UKZJTS9G8"],
-                    ["javier.garcia@grandvision.com","U016UQJ817Z"],
+                    ["javier.garcia@grandvision.com","U016UQJ817ZA"],
                 ])
                 const text: string = req.body.release.body;
                 for (const line of text.split("\n")) {
