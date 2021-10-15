@@ -9,5 +9,5 @@ export interface Ngrok {
 
 export interface Jira {
   JIRA_USER: string
-  JIRA_PASSWORD: string
+  JIRA_PASSWORDT: string
 }
